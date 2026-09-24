@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de tareas - Proyecto de ejemplo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="contenedor">
+    <h1>📋 Lista de tareas</h1>
+    <p class="subtitulo">
+      Este HTML no sabe nada de Python ni de PostgreSQL.
+      Solo le pide datos a la API con <code>fetch()</code>.
+    </p>
+
+    <form id="form-nueva-tarea">
+      <input
+        type="text"
+        id="input-titulo"
+        placeholder="Escribí una tarea nueva..."
+        required
+      />
+      <button type="submit">Agregar</button>
+    </form>
+
+    <p id="mensaje-error" class="error" hidden></p>
+
+    <ul id="lista-tareas"></ul>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

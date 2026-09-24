@@ -1,0 +1,118 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 480px;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 1.6rem;
+}
+
+.subtitulo {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin: 0 0 24px;
+}
+
+.subtitulo code {
+  background: #1e293b;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+#form-nueva-tarea {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+#input-titulo {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #e2e8f0;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4f46e5;
+}
+
+.error {
+  background: #7f1d1d;
+  color: #fecaca;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 0 0 16px;
+}
+
+#lista-tareas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tarea {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1e293b;
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+
+.tarea span {
+  flex: 1;
+}
+
+.tarea.hecha span {
+  text-decoration: line-through;
+  color: #64748b;
+}
+
+.tarea button {
+  background: transparent;
+  color: #f87171;
+  padding: 4px 8px;
+  font-size: 1.1rem;
+}
+
+.tarea button:hover {
+  background: #334155;
+}
+
+.vacio {
+  color: #64748b;
+  text-align: center;
+  padding: 24px 0;
+}
