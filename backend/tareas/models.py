@@ -93,3 +93,25 @@ class Clientes(models.Model):
                 "fecha_hora": self.fecha_hora.isoformat(),
                 "creado": self.creado.isoformat(),
             }
+     class historial_turnos(models.Model):
+        id_historial = models.AutoField(primary_key=True)
+        id_turno = models.ForeignKey(Turnos, on_delete=models.CASCADE)
+        fecha_hora = models.DateTimeField(auto_now_add=True)
+        estado = models.CharField(max_length=20, choices=[("pendiente", "Pendiente"), ("confirmado", "Confirmado"), ("cancelado", "Cancelado")])
+        cliente = models.ForeignKey(Clientes, on_delete=models.CASCADE)
+        profesional = models.ForeignKey(Profesionales, on_delete=models.CASCADE)
+
+        class Meta:
+            ordering = ["fecha_hora"]
+
+        def __str__(self):
+            return f"Historial Turno: {self.turno} - {self.estado_anterior} -> {self.estado_nuevo} - {self.fecha_hora}"
+
+        def to_dict(self):
+            return {
+                "id": self.id_historial,
+                "turno": self.turno.to_dict(),
+                "estado_anterior": self.estado_anterior,
+                "estado_nuevo": self.estado_nuevo,
+                "fecha_hora": self.fecha_hora.isoformat(),
+            }
