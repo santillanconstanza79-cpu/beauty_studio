@@ -157,7 +157,6 @@ def detalle_turno(request, turno_id):
         body = json.loads(request.body or "{}")
         nuevo_estado = body.get("estado")
 
-        # Si cambia el estado, guardamos el movimiento en el historial
         if nuevo_estado and nuevo_estado != turno.estado:
             HistorialTurno.objects.create(
                 turno=turno,
