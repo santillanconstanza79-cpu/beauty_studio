@@ -1,118 +1,114 @@
-* {
-  box-sizing: border-box;
-}
+before { html { box-sizing: border-box; } *, *::before, *::after { box-sizing: inherit; } }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+    line-height: 1.1;
+    text-align: center;
+    margin: 0 0 clamp(28px, 5vw, 64px);
+  }
+  h1 em { font-style: italic; }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  padding: 40px 16px;
-  background: #0f172a;
-  color: #e2e8f0;
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-}
+  .servicios {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(14px, 2vw, 26px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tarjeta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    aspect-ratio: 3 / 4;
+    padding: 28px 22px;
+    text-align: center;
+    overflow: hidden;
+    background-color: var(--fondo);
+    color: var(--texto);
+    background-image: var(--foto, none);
+    background-size: cover;
+    background-position: center;
+  }
+  /* Cuando agregues una foto, sumá la clase "con-foto" para oscurecerla y que el texto se lea */
+  .tarjeta.con-foto::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(62, 49, 43, .45);
+  }
+  .tarjeta > * { position: relative; }
+  .tarjeta::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid currentColor;
+    opacity: 0;
+    transition: opacity .25s;
+    pointer-events: none;
+  }
+  .tarjeta:hover::after, .tarjeta:focus-visible::after { opacity: .55; }
 
-.contenedor {
-  width: 100%;
-  max-width: 480px;
-}
+  .tarjeta svg { width: 56px; height: 56px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .tarjeta h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+  }
+  .tarjeta p {
+    margin: 0;
+    max-width: 18ch;
+    font-size: .95rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 
-h1 {
-  margin: 0 0 4px;
-  font-size: 1.6rem;
-}
+  .t-pelu    { --fondo: var(--cafe);        --texto: var(--crema); }
+  .t-mani    { --fondo: var(--cafe-suave);  --texto: var(--crema); }
+  .t-make    { --fondo: var(--arena);       --texto: var(--cafe); }
+  .t-pestana { --fondo: var(--durazno);     --texto: var(--cafe); }
 
-.subtitulo {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  margin: 0 0 24px;
-}
-
-.subtitulo code {
-  background: #1e293b;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-#form-nueva-tarea {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-#input-titulo {
-  flex: 1;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #334155;
-  background: #1e293b;
-  color: #e2e8f0;
-  font-size: 1rem;
-}
-
-button {
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: none;
-  background: #6366f1;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #4f46e5;
-}
-
-.error {
-  background: #7f1d1d;
-  color: #fecaca;
-  padding: 10px 12px;
-  border-radius: 8px;
-  margin: 0 0 16px;
-}
-
-#lista-tareas {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.tarea {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #1e293b;
-  padding: 12px 14px;
-  border-radius: 8px;
-}
-
-.tarea span {
-  flex: 1;
-}
-
-.tarea.hecha span {
-  text-decoration: line-through;
-  color: #64748b;
-}
-
-.tarea button {
-  background: transparent;
-  color: #f87171;
-  padding: 4px 8px;
-  font-size: 1.1rem;
-}
-
-.tarea button:hover {
-  background: #334155;
-}
-
-.vacio {
-  color: #64748b;
-  text-align: center;
-  padding: 24px 0;
-}
+  @media (max-width: 900px) {
+    .logo img { height: 56px; }
+    .servicios { grid-template-columns: repeat(2, 1fr); }
+    .boton-menu {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px; height: 44px;
+      border: 1px solid var(--cafe);
+      background: transparent;
+      border-radius: 50%;
+      color: inherit;
+      cursor: pointer;
+    }
+    .menu {
+      display: none;
+      position: absolute;
+      top: calc(100% - 4px); left: 20px; right: 20px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: var(--arena);
+      border-radius: 20px;
+      padding: 10px 24px 18px;
+      z-index: 5;
+    }
+    .menu.abierto { display: flex; }
+    .menu li + li { border-top: 1px solid rgba(62,49,43,.2); }
+    .menu a:not(.btn-reserva) { display: block; padding: 14px 0; border: 0; }
+    .menu li:last-child { border: 0; padding-top: 12px; }
+    .btn-reserva { display: block; text-align: center; }
+  }
+  @media (max-width: 520px) {
+    .servicios { grid-template-columns: 1fr; }
+    .tarjeta { aspect-ratio: 16 / 9; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
